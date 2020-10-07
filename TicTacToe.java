@@ -7,6 +7,7 @@ public class TicTacToe {
 	Scanner sc = new Scanner(System.in);
 	char[] board ;
 	char letter  ;
+	
 	TicTacToe(){
 		board = new char[10];
 		Arrays.fill(board, ' ');
@@ -33,13 +34,22 @@ public class TicTacToe {
 		}
 		System.out.println();
 	}
+	
 	public void makeMove() {
-		System.out.println("Enter number betwwen 1-9 :");
-		int number = sc.nextInt();
-		if(board[number]==' ') {
-			board[number] =letter; 
-		}else{
-			System.out.println("pos occupied");
+		while(true) {
+			System.out.println("Enter number betwwen 1-9 :");
+			int number = sc.nextInt();
+			if(board[number]==' ') {
+				board[number] =letter; 
+				showBoard();
+			}else{
+				System.out.println("pos occupied , don't you know how to play");
+				break;
+			}	
 		}	
 	}
+	
+	
+	
+	
 }
