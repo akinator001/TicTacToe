@@ -24,4 +24,11 @@ public class TicTacToe {
 			System.out.println("computer have x to play ");
 		}
 	}
+	
+	public void showBoard() {
+		for(int i=0; i<10; i++) {
+			System.out.print(board[i]+" -- ");
+		}
+		System.out.println();
+	}
 }
