@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TicTacToe {
 	Scanner sc = new Scanner(System.in);
 	char[] board ;
-	
+	char letter  ;
 	TicTacToe(){
 		board = new char[10];
 		Arrays.fill(board, ' ');
@@ -14,7 +14,7 @@ public class TicTacToe {
 	
 	public void chooseOption(){
 		System.out.println("Choose x or o :");
-		char letter  = sc.next().charAt(0);
+		letter = sc.next().charAt(0);
 		if(letter == 'x') {
 			System.out.println("player have x to play ");
 			System.out.println("computer have o to play ");
@@ -32,5 +32,14 @@ public class TicTacToe {
 			System.out.println("---------");
 		}
 		System.out.println();
+	}
+	public void makeMove() {
+		System.out.println("Enter number betwwen 1-9 :");
+		int number = sc.nextInt();
+		if(board[number]==' ') {
+			board[number] =letter; 
+		}else{
+			System.out.println("pos occupied");
+		}	
 	}
 }

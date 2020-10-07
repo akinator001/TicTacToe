@@ -11,6 +11,8 @@ public class TicTacToeMain {
 		
 		ticObj.chooseOption();
 		ticObj.showBoard();
+		ticObj.makeMove();
+		ticObj.showBoard();
 	}
 
 }
