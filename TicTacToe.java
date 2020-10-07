@@ -7,6 +7,7 @@ public class TicTacToe {
 	Scanner sc = new Scanner(System.in);
 	char[] board ;
 	char letter  ;
+	String playerTc;
 	
 	TicTacToe(){
 		board = new char[10];
@@ -49,7 +50,34 @@ public class TicTacToe {
 		}	
 	}
 	
+	public void playerTossChoice() {
+		System.out.println("enter your choice : ");
+		int choice = sc.nextInt();
+		if(choice == 1) {
+			playerTc ="head";
+		}
+		else {
+			playerTc="tail";
+		}
+		tossWin();
+	}	
 	
-	
+	public void tossWin() {
+		int ran =(int) (Math.random() *20 % 2);
+		String tossResult;
+		if(ran == 0) {
+			tossResult = "tail";
+		}else {
+			tossResult = "head";
+		}
+		System.out.println("coins shows :" + tossResult);
+		
+		
+		if(tossResult == playerTc) {
+			System.out.println("player wins the toss");
+		}else {
+			System.out.println("computer wins the toss");
+		}
+	}
 	
 }
