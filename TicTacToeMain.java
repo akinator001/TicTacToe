@@ -8,12 +8,12 @@ public class TicTacToeMain {
 		System.out.println("Welcome");
 		 
 		TicTacToe ticObj = new TicTacToe();
-//		
-//		ticObj.chooseOption();
-//		ticObj.showBoard();
-//		ticObj.makeMove();
-//		ticObj.showBoard();
 		ticObj.playerTossChoice();
+		ticObj.chooseOption();
+		ticObj.showBoard();
+		ticObj.makeMove();
+		ticObj.showBoard();
+		
 	}
 
 }
