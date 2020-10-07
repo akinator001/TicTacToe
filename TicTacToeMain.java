@@ -10,6 +10,7 @@ public class TicTacToeMain {
 		TicTacToe ticObj = new TicTacToe();
 		
 		ticObj.chooseOption();
+		ticObj.showBoard();
 	}
 
 }
