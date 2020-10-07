@@ -26,8 +26,10 @@ public class TicTacToe {
 	}
 	
 	public void showBoard() {
-		for(int i=0; i<10; i++) {
-			System.out.print(board[i]+" -- ");
+		System.out.println("Board is like :");
+		for(int i=1; i<10; i=i+3) {
+			System.out.println(board[i]+" | " +board[i+1]+" | "+ board[i+2]);
+			System.out.println("---------");
 		}
 		System.out.println();
 	}
