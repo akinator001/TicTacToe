@@ -219,16 +219,29 @@ public class TicTacToe {
 	public int blockPlayer() {
 		int position = ifPossibleToWin();
 		 if (position == 0) {
-			int flag = 0;
-			while (flag == 0) {
-				position = ((int) Math.floor(Math.random() * 10) % 9) + 1;
-				if (isAvailable(position))
-					flag = 1;
-				}
-			}
+			position = takeCorner(); 
+	     }
 		return position;
 	}
 	
-	
+	public int takeCorner() {
+		if(isAvailable(1))
+			return 1;
+		else if(isAvailable(3))
+			return 3;
+		else if(isAvailable(7))
+			return 7;
+		else if(isAvailable(9))
+			return 9;
+		else {
+			int flag = 0, position = 0;
+			while(flag == 0) {
+				 position = ((int)Math.floor(Math.random()* 10) % 9) + 1;
+				if(isAvailable(position))
+					flag = 1;
+			}
+			return position;
+		}	
+	}
 	
 }
