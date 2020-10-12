@@ -45,30 +45,59 @@ public class TicTacToe {
 	}
 	
 	public void makeMove() {
-		char checkChar;
-		if(currentPlayer == "user")
-			checkChar = playerChar;
+		if(currentPlayer == "Computer") {
+			computerTurn();
+		}else {
+			playerTurn();
+		}
+	}
+	
+	public void playerTurn() {
+		playerMove();
+		showBoard();
+		if (winningCondition()) {
+			System.out.println("Player has won");
+		} else if (drawCondition())
+			System.out.println("Its a draw.");
 		else
-			checkChar = opponentChar;
-		
-		while(true) {
-			System.out.println("Enter number betwwen 1-9 :");
-			int number = sc.nextInt();
+			computerTurn();
+	}
 
-			if(board[number]==' ') {
-				board[number] =checkChar; 
-				showBoard();
-			}else{
-				System.out.println("pos occupied , don't you know how to play");
-				break;
+	public void computerTurn() {
+		computerMove();
+		showBoard();
+		if (winningCondition()) {
+			System.out.println("Computer has won");
+		} else if (drawCondition())
+			System.out.println("Its a draw.");
+		else
+			playerTurn();
+	}
+	
+	public void playerMove() {
+		int flag = 0 ;
+		while (flag == 0) {
+			System.out.println("Enter position : ");
+			int position = sc.nextInt();
+			if (board[position] == ' ' && position >= 1 && position < 10) {
+				System.out.println("Your Mark has been placed at position " + position);
+				board[position] = playerChar;
+				flag = 1;
+			} else
+				System.out.println("This Position is not vacant");
+		}
+	}
+	
+	public void computerMove() {
+		
+		int flag = 0;
+		while (flag == 0) {
+			int position = ((int) Math.floor(Math.random() * 10) % 9) + 1;
+			if (board[position] == ' ' && position >= 1 && position < 10) {
+				board[position] = opponentChar;
+				flag = 1;
 			}
-			boolean bool=winningCondition();
-			if(bool) {
-				System.out.println("winnig done : "+ checkChar);
-				break;
-			}
-			checkChar = (checkChar == 'x' ) ? 'o': 'x';
-		}	
+		}
 	}
 	
 	public void playerTossChoice() {
@@ -111,13 +140,11 @@ public class TicTacToe {
 			checkChar = opponentChar;
 
 		
-		//horizontal check
 		for(int i=1; i<10 ;i+=3) {
 			if(board[i]==checkChar && board[i+1]==checkChar && board[i+2]==checkChar)
 				return true;
 		}
 		
-		//vertical check
 		for(int i=1;i<=3;i++) {
 			if(board[i]==checkChar && board[i+3]==checkChar && board[i+6]==checkChar)
 				return true;
@@ -131,6 +158,18 @@ public class TicTacToe {
 		
 		return false;	
 	}
+
+	
+	public boolean drawCondition() {
+		for (int i = 1; i < 10; i++) {
+			if (board[i] == ' ') {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	
 
 	
 	
