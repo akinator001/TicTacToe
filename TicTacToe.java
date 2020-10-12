@@ -79,7 +79,7 @@ public class TicTacToe {
 		while (flag == 0) {
 			System.out.println("Enter position : ");
 			int position = sc.nextInt();
-			if (board[position] == ' ' && position >= 1 && position < 10) {
+			if (isAvailable(position)) {
 				System.out.println("Your Mark has been placed at position " + position);
 				board[position] = playerChar;
 				flag = 1;
@@ -89,15 +89,11 @@ public class TicTacToe {
 	}
 	
 	public void computerMove() {
-		
-		int flag = 0;
-		while (flag == 0) {
-			int position = ((int) Math.floor(Math.random() * 10) % 9) + 1;
-			if (board[position] == ' ' && position >= 1 && position < 10) {
-				board[position] = opponentChar;
-				flag = 1;
-			}
+		int position = ifPossibleToWin();
+		if (position == 0) {
+			position = blockPlayer();
 		}
+		board[position] = opponentChar;
 	}
 	
 	public void playerTossChoice() {
@@ -169,8 +165,69 @@ public class TicTacToe {
 		return true;
 	}
 
+	public boolean isAvailable(int position) {
+		if (board[position] == ' ' && position >= 1 && position < 10)
+			return true;
+		else
+			return false;
+	}
 	
+	
+	public int ifPossibleToWin() {
+		char ch;
+		if(currentPlayer == "user")
+			ch = playerChar;
+		else
+			ch = opponentChar;
+		
+		if (isAvailable(1) && ((board[2] == ch && board[3] == ch) || (board[4] == ch && board[7] == ch)
+				|| (board[5] == ch && board[9] == ch)))
+			return 1;
 
+		if (isAvailable(2) && ((board[1] == ch && board[3] == ch) || (board[5] == ch && board[8] == ch)))
+			return 2;
+
+		if (isAvailable(3) && ((board[2] == ch && board[1] == ch) || (board[6] == ch && board[9] == ch)
+				|| (board[5] == ch && board[7] == ch)))
+			return 3;
+
+		if (isAvailable(4) && ((board[1] == ch && board[7] == ch) || (board[5] == ch && board[6] == ch)))
+			return 4;
+
+		if (isAvailable(5) && ((board[1] == ch && board[9] == ch) || (board[3] == ch && board[7] == ch)
+				|| (board[2] == ch && board[8] == ch) || (board[4] == ch && board[6] == ch)))
+			return 5;
+
+		if (isAvailable(6) && ((board[3] == ch && board[9] == ch) || (board[5] == ch && board[4] == ch)))
+			return 6;
+
+		if (isAvailable(7) && ((board[1] == ch && board[4] == ch) || (board[9] == ch && board[8] == ch)
+				|| (board[5] == ch && board[3] == ch)))
+			return 7;
+
+		if (isAvailable(8) && ((board[2] == ch && board[5] == ch) || (board[7] == ch && board[9] == ch)))
+			return 8;
+
+		if (isAvailable(9) && ((board[7] == ch && board[8] == ch) || (board[3] == ch && board[6] == ch)
+				|| (board[5] == ch && board[1] == ch)))
+			return 9;
+
+		else
+			return 0;
+
+	}
+	public int blockPlayer() {
+		int position = ifPossibleToWin();
+		 if (position == 0) {
+			int flag = 0;
+			while (flag == 0) {
+				position = ((int) Math.floor(Math.random() * 10) % 9) + 1;
+				if (isAvailable(position))
+					flag = 1;
+				}
+			}
+		return position;
+	}
 	
 	
 	
