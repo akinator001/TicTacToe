@@ -51,6 +51,28 @@ public class TicTacToe {
 			playerTurn();
 		}
 	}
+		
+	public void playerMove() {
+		int flag = 0 ;
+		while (flag == 0) {
+			System.out.println("Enter position : ");
+			int position = sc.nextInt();
+			if (isAvailable(position)) {
+				System.out.println("Your Mark has been placed at position " + position);
+				board[position] = playerChar;
+				flag = 1;
+			} else
+				System.out.println("This Position is not vacant");
+		}
+	}
+	
+	public void computerMove() {
+		int position = ifPossibleToWin();
+		if (position == 0) {
+			position = blockPlayer();
+		}
+		board[position] = opponentChar;
+	}
 	
 	public void playerTurn() {
 		playerMove();
@@ -72,28 +94,6 @@ public class TicTacToe {
 			System.out.println("Its a draw.");
 		else
 			playerTurn();
-	}
-	
-	public void playerMove() {
-		int flag = 0 ;
-		while (flag == 0) {
-			System.out.println("Enter position : ");
-			int position = sc.nextInt();
-			if (isAvailable(position)) {
-				System.out.println("Your Mark has been placed at position " + position);
-				board[position] = playerChar;
-				flag = 1;
-			} else
-				System.out.println("This Position is not vacant");
-		}
-	}
-	
-	public void computerMove() {
-		int position = ifPossibleToWin();
-		if (position == 0) {
-			position = blockPlayer();
-		}
-		board[position] = opponentChar;
 	}
 	
 	public void playerTossChoice() {
@@ -250,5 +250,4 @@ public class TicTacToe {
 			return position;
 		}
     } 
-
 }
